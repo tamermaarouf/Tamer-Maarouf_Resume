@@ -1,71 +1,76 @@
 /*
 
-This file contains all of the code running in the background that makes resumeBuilder.js possible. We call these helper functions because they support your code in this course.
+This file contains all of the code running in the background that makes resumeBuilder.
+js possible. We call these helper functions because they support your code in this course.
 
-Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
+Don't worry, you'll learn what's going on in this file throughout the course. 
+You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
 
 Cameron Pittman
 */
-
 
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
-var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr>';
 
-var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
-var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
-var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
-var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
 
-var HTMLbioPic = '<img src="%data%" class="biopic">';
-var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
+let HTMLheaderName = '<h1 id="name">%data%</h1>';
+let HTMLheaderRole = '<span>%data%</span><hr>';
 
-var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
-var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+let HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
+let HTMLmobile = '<li class="flex-item"><span class="orange-text">Mobile: </span><span class="white-text">%data%</span></li>';
+let HTMLemail = '<li class="flex-item"><span class="orange-text">Email: </span><span class="white-text">%data%</span></li>';
+let HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter: </span><span class="white-text">%data%</span></li>';
+let HTMLgithub = '<li class="flex-item"><span class="orange-text">github: </span><span class="white-text">%data%</span></li>';
+let HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
+let HTMLlocation = '<li class="flex-item"><span class="orange-text">location: </span><span class="white-text">%data%</span></li>';
 
-var HTMLworkStart = '<div class="work-entry"></div>';
-var HTMLworkEmployer = '<a href="#">%data%';
-var HTMLworkTitle = ' - %data%</a>';
-var HTMLworkDates = '<div class="date-text">%data%</div>';
-var HTMLworkLocation = '<div class="location-text">%data%</div>';
-var HTMLworkDescription = '<p><br>%data%</p>';
+let HTMLbioPic = '<img src="%data%" class="biopic">';
+let HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 
-var HTMLprojectStart = '<div class="project-entry"></div>';
-var HTMLprojectTitle = '<a href="#">%data%</a>';
-var HTMLprojectDates = '<div class="date-text">%data%</div>';
-var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+let HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
+let HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
 
-var HTMLschoolStart = '<div class="education-entry"></div>';
-var HTMLschoolName = '<a href="#">%data%';
-var HTMLschoolDegree = ' -- %data%</a>';
-var HTMLschoolDates = '<div class="date-text">%data%</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
-var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+let HTMLworkStart = '<div class="work-entry"></div>';
+let HTMLworkEmployer = '<a href="#">%data%';
+let HTMLworkTitle = ' - %data%</a>';
+let HTMLworkDates = '<div class="date-text">%data%</div>';
+let HTMLworkLocation = '<div class="location-text">%data%</div>';
+let HTMLworkDescription = '<p><br>%data%</p>';
 
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
-var HTMLonlineSchool = ' - %data%</a>';
-var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+let HTMLprojectStart = '<div class="project-entry"></div>';
+let HTMLprojectTitle = '<a href="#">%data%</a>';
+let HTMLprojectDates = '<div class="date-text">%data%</div>';
+let HTMLprojectDescription = '<p><br>%data%</p>';
+let HTMLprojectImage = '<img src="%data%">';
 
-var internationalizeButton = '<button>Internationalize</button>';
-var googleMap = '<div id="map"></div>';
+let HTMLschoolStart = '<div class="education-entry"></div>';
+let HTMLschoolName = '<a href="#">%data%';
+let HTMLschoolDegree = ' -- %data%</a>';
+let HTMLschoolDates = '<div class="date-text">%data%</div>';
+let HTMLschoolLocation = '<div class="location-text">%data%</div>';
+let HTMLschoolMajor = '<em><br>Major: %data%</em>';
+
+let HTMLonlineClasses = '<h3>Online Classes</h3>';
+let HTMLonlineTitle = '<a href="#">%data%';
+let HTMLonlineSchool = ' - %data%</a>';
+let HTMLonlineDates = '<div class="date-text">%data%</div>';
+let HTMLonlineURL = '<br><a href="#">%data%</a>';
+
+let internationalizeButton = '<button>Internationalize</button>';
+let googleMap = '<div id="map"></div>';
 
 
 /*
-The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
+The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics 
+requires you to create a function that will need this helper code to run. Don't delete! 
+It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
   $('button').click(function() {
-    var $name = $('#name');
-    var iName = inName($name.text()) || function(){};
+    let $name = $('#name');
+    let iName = inName($name.text()) || function(){};
     $name.html(iName);
   });
 });

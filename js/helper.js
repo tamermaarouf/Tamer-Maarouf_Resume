@@ -56,7 +56,7 @@ let HTMLonlineClasses = '<h3>Online Classes</h3>';
 let HTMLonlineTitle = '<a href="#">%data%';
 let HTMLonlineSchool = ' - %data%</a>';
 let HTMLonlineDates = '<div class="date-text">%data%</div>';
-let HTMLonlineURL = '<br><a href="#">%data%</a>';
+let HTMLonlineURL = '<br><a href="#">%data%</a><hr>';
 
 let internationalizeButton = '<button>Internationalize</button>';
 let googleMap = '<div id="map"></div>';

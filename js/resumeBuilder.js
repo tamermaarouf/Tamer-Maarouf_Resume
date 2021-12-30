@@ -82,7 +82,76 @@ const model = {
             dates: '2021',  //(works with a hyphen between them)
             url: 'https://udacity.com'
         }],
-    }
+    },
+
+    work: {
+        jobs: [{  //array of objects with
+            employer: 'HAZEM SHOUKRY DESIGNS',
+            title: 'SENIOR GRAPHIC DESIGNER',
+            location: 'CAIRO, EGYPT',
+            dates: 'OCT 2018 - PRESENT', // (Can be 'in progress')
+            description: `Specialized in the design and production of all custom made products such as water jet
+            medallions, cut-to-size tiles, wall cladding, marble tiles and curved marble works.`
+        },
+        {  //array of objects with
+            employer: 'HAZEM SHOUKRY DESIGNS',
+            title: 'GRAPHIC DESIGNER',
+            location: 'CAIRO, EGYPT',
+            dates: 'MAY 2011 - PRESENT', // (Can be 'in progress')
+            description: `Work in floor planning and SP line tracing to create (Vector Lines) from drafts and hand
+            drawing designs.`
+        },
+        {  //array of objects with
+            employer: 'ADWAA SIGN CENTRE',
+            title: 'GRAPHIC DESIGN PRODUCTION',
+            location: 'DUBAI, UAE',
+            dates: 'JULY 2016 - AUG 2018', // (Can be 'in progress')
+            description: `coordinator among clients, technical supervisors, project consultants, and creative
+            department to initiate, plan, e ecute, and nalize the target sign image
+            reated and produced new media designs for indoor and outdoor signage while ensuring
+            ualit control b reviewing and evaluating the target image of the client s marketing
+            department`
+        },
+        {  //array of objects with
+            employer: 'AL-DAWLIA ADVERTISING AGENCY',
+            title: 'GRAPHIC DESIGN',
+            location: 'CAIRO, EGYPT',
+            dates: 'APR 2003 - APR 2010', // (Can be 'in progress')
+            description: `Collaborated on various creative designers that were inclusive of professional logos,
+            slogans, and Name Tags, in addition to paintings of foreign Affairs and banners of all
+            kinds.
+            Performed as a coordinator among clients, supervisors, and the creative department to
+            produce the most optimized version of the desired design product`
+        }]
+    },
+    projects: [// array of objects with
+            { 
+              title: 'Online Resume',
+              dates: '12-2021', //(works with a hyphen between them)
+              description: 'Dynamically displayed resume sections (biography, education, work, projects, footer) include all of the real JavaScript object data',
+              images: ['./images/Online-Resume.png'] //array with string urls
+            },
+            { 
+                title: 'Responsive Images',
+                dates: '12-2021', //(works with a hyphen between them)
+                description: 'Make the images fit in their containers in the viewport.',
+                images: ['https://github.com/tamermaarouf/Project-Part-1-Start'] //array with string urls
+            },
+            { 
+                title: 'Color Game',
+                dates: '12-2021', //(works with a hyphen between them)
+                description: 'your color choice shows "Wrong" even when it is correct, then take a look at your colors array and make sure that the colors have spaces after the commas in the RGB expression, otherwise the picked color will not match the randomly selected color.',
+                images: ['https://github.com/tamermaarouf/Project-Part-1-Start'] //array with string urls
+            },
+            { 
+                title: 'Cat Clicker Premium Vanilla',
+                dates: '12-2021', //(works with a hyphen between them)
+                description: `
+                When a cat name is clicked in the list, the cat display area should update to show the data for the selected cat.
+                The number of clicks in the cat area should be unique to each cat, and should increment when the cat's picture is clicked.`,
+                images: ['https://github.com/tamermaarouf/Project-Part-1-Start'] //array with string urls
+            },
+            ]
 };
 
 
@@ -91,16 +160,26 @@ const octopus = {
     init: function(){
         bioView.init();
         educationView.init();
+        workView.init();
+        projectsView.init();
     },
     getBio: function(){
         return model.bio;
     },
     getEducation: function(){
         return model.education;
-    }        
+    },
+    getWork: function(){
+        return model.work;
+    },
+    getProjects: function(){
+        return model.projects;
+    }                
 };
 
 // ------------------------VIEW--------------------------------//
+
+/* --------------------------------------- bio ---------------------------------------------------- */
 
 const bioView = {
     init: function(){
@@ -146,6 +225,8 @@ const bioView = {
     }
 };
 
+/* --------------------------------------- Education ---------------------------------------------------- */
+
 const educationView = {
     init: function() {
         this.HTMLschoolStart = '<div class="education-entry"></div>';
@@ -184,7 +265,58 @@ const educationView = {
         });      
 
     }
-}
+};
+
+/* --------------------------------------- Work ---------------------------------------------------- */
+
+const workView = {
+    init: function() {
+        this.HTMLworkStart = '<div class="work-entry"></div>';
+        this.HTMLworkEmployer = '<a href="#">%data%';
+        this.HTMLworkTitle = ' - %data%</a>';
+        this.HTMLworkDates = '<div class="date-text">%data%</div>';
+        this.HTMLworkLocation = '<div class="location-text">%data%</div>';
+        this.HTMLworkDescription = '<p><br>%data%</p>';
+        
+        this.getWorks = octopus.getWork();
+        this.render();        
+    },
+    render: function() {
+        $('#workExperience').append(this.HTMLworkStart);
+        this.getWorks.jobs.forEach(job => {
+            let formattedWorkEmp = this.HTMLworkEmployer.replace('%data%', job.employer);
+            formattedWorkEmp += this.HTMLworkTitle.replace('%data%', job.title);
+            $('.work-entry').append(formattedWorkEmp);
+            $('.work-entry').append(this.HTMLworkDates.replace('%data%', job.dates));
+            $('.work-entry').append(this.HTMLworkLocation.replace('%data%', job.location));
+            $('.work-entry').append(this.HTMLworkDescription.replace('%data%', job.description));
+        });
+    }
+};
+
+/* --------------------------------------- Projects ---------------------------------------------------- */
+
+const projectsView = {
+    init: function() {
+        this.HTMLprojectStart = '<div class="project-entry"></div>';
+        this.HTMLprojectTitle = '<a href="#">%data%</a>';
+        this.HTMLprojectDates = '<div class="date-text">%data%</div>';
+        this.HTMLprojectDescription = '<p><br>%data%</p>';
+        this.HTMLprojectImage = '<img src="%data%">';
+        
+        this.getProjects = octopus.getProjects();
+        this.render();        
+    },
+    render: function() {
+        $('#projects').append(this.HTMLprojectStart);
+        this.getProjects.forEach(getProject => {
+            $('.project-entry').append(this.HTMLprojectTitle.replace('%data%', getProject.title));
+            $('.project-entry').append(this.HTMLprojectDates.replace('%data%', getProject.dates));
+            $('.project-entry').append(this.HTMLprojectDescription.replace('%data%', getProject.description));
+            // $('.project-entry').append(this.HTMLprojectImage.replace('%data%', getProject.images));
+        });
+    }
+};
 
 // GO octopus
 octopus.init();

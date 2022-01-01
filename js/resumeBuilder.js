@@ -162,6 +162,7 @@ const octopus = {
         educationView.init();
         workView.init();
         projectsView.init();
+        livedView.init();
     },
     getBio: function(){
         return model.bio;
@@ -318,5 +319,19 @@ const projectsView = {
     }
 };
 
-// GO octopus
+
+
+/* ---------------------------Where I've Lived and Worked ------------------- */
+const livedView = {
+    init: function(){
+        this.internationalizeButton = '<button>Internationalize</button>';
+        this.googleMap = '<div id="map"></div>';
+        this.render();
+    },
+    render: function(){
+        $('#mapDiv').append(this.googleMap);
+        $('#map').append(this.internationalizeButton);
+    }
+};
+// octopus GO 
 octopus.init();
